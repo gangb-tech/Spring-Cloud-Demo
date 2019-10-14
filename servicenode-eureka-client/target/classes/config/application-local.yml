@@ -1,0 +1,27 @@
+server:
+  port: 30002
+
+management:
+  server:
+    port: 39002
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+
+eureka:
+  instance:
+    preferIpAddress: true
+    health-check-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/actuator/health
+    instance-id: ${spring.cloud.client.ipaddress}:${server.port}
+    status-page-url: http://${spring.cloud.client.ipaddress}:${management.server.port}/swagger-ui.html
+    metadata-map:
+      management:
+        port: ${management.server.port}
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:30001/eureka/
