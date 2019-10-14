@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: servicenode-eureka-server
+  banner:
+    location: classpath:config/banner.txt
+  profiles:
+    active: local
+
+info:
+  name: '@porject.artifactId@'
+  version: '@project.version@'
